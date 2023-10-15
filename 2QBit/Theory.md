@@ -18,7 +18,7 @@
 ```
 
 $$
-|\psi 0> = |0.0>
+|\psi_0\rangle = |00\rangle
 $$
 
 ## Step 1
@@ -31,11 +31,13 @@ $$
 ```
 
 $$
-\Alpha = |0> \newline
-\Beta = |0> \newline
-H\Alpha = \frac{1}{\sqrt{2}}(|0> + |1>) = \frac{1}{\sqrt{2}}|0> + \frac{1}{\sqrt{2}}|1> \newline
-X\Beta = |1> \newline
-|\psi 1> = |(\frac{1}{\sqrt{2}}|0> + \frac{1}{\sqrt{2}}|1>).1>
+|\psi_0\rangle = |00\rangle \newline
+|\psi_1\rangle = H|0\rangle*X|0\rangle \newline
+H|0\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \newline
+X|0\rangle = |1\rangle \newline
+\Longrightarrow |\psi_1\rangle = (\frac{1}{\sqrt{2}}|0\rangle + \frac{1}{\sqrt{2}}|1\rangle)|1\rangle \newline
+|\psi_1\rangle = \frac{1}{\sqrt{2}}|0\rangle|1\rangle + \frac{1}{\sqrt{2}}|1\rangle|1\rangle \newline
+|\psi_1\rangle = \frac{1}{\sqrt{2}}|01\rangle + \frac{1}{\sqrt{2}}|11\rangle \newline
 $$
 
 ## Step 2
@@ -48,10 +50,10 @@ $$
 ```
 
 $$
-\Alpha = \frac{1}{\sqrt{2}}|0> + \frac{1}{\sqrt{2}}|1> \newline
-\Beta = |1> \newline
-CNOT(\Alpha, \Beta) = \frac{1}{\sqrt{2}}|0.1> + \frac{1}{\sqrt{2}}|1.0> \newline
-|\psi 2> = \frac{1}{\sqrt{2}}|0.1> + \frac{1}{\sqrt{2}}|1.0> \newline
+\Alpha = \frac{1}{\sqrt{2}}|0\rangle + \frac{1}{\sqrt{2}}|1\rangle \newline
+\Beta = |1\rangle \newline
+CNOT(\Alpha, \Beta) = \frac{1}{\sqrt{2}}|01\rangle + \frac{1}{\sqrt{2}}|10\rangle \newline
+|\psi_2\rangle = \frac{1}{\sqrt{2}}|01\rangle + \frac{1}{\sqrt{2}}|10\rangle \newline
 $$
 
 ## Step 3
@@ -64,28 +66,27 @@ $$
 ```
 
 $$
-|\psi 2> = \frac{1}{\sqrt{2}}|0.1> + \frac{1}{\sqrt{2}}|1.0> \newline
-|\psi 3> = H|\psi 2> \newline
-\Alpha = \frac{1}{\sqrt{2}}|0.1> \newline
-\Beta = \frac{1}{\sqrt{2}}|1.0> \newline
-H\Alpha = \frac{1}{\sqrt{2}}|0>H|1> \newline
-H\Alpha = \frac{1}{\sqrt{2}}|0>(\frac{1}{\sqrt{2}}|0> - \frac{1}{\sqrt{2}}|1>) \newline
-H\Alpha = \frac{1}{\sqrt{2}}(\frac{1}{\sqrt{2}}|0.0> - \frac{1}{\sqrt{2}}|0.1>) \newline
-\Longrightarrow H\Alpha = \frac{1}{2}|0.0> - \frac{1}{2}|0.1> \newline
-H\Beta = \frac{1}{\sqrt{2}}|1>H|0> \newline
-H\Beta = \frac{1}{\sqrt{2}}|1>(\frac{1}{\sqrt{2}}|0> + \frac{1}{\sqrt{2}}|1>) \newline
-H\Beta = \frac{1}{\sqrt{2}}(\frac{1}{\sqrt{2}}|1.0> + \frac{1}{\sqrt{2}}|1.1>) \newline
-\Longrightarrow H\Beta = \frac{1}{2}|1.0> + \frac{1}{2}|1.1> \newline
-|\psi 3> = HA + HB \newline
-\Longrightarrow |\psi 3> = \frac{1}{2}|0.0> - \frac{1}{2}|0.1> + \frac{1}{2}|1.0> + \frac{1}{2}|1.1> \newline
+|\psi_2\rangle = \frac{1}{\sqrt{2}}|01\rangle + \frac{1}{\sqrt{2}}|10\rangle \newline
+|\psi_3\rangle = \frac{1}{\sqrt{2}}|0\rangle*H|1\rangle + \frac{1}{\sqrt{2}}|1\rangle*H|0\rangle \newline
 $$
-
+---
+$$
+H|0\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \newline
+H|1\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) \newline
+$$
+---
+$$
+\Longrightarrow |\psi_3\rangle = \frac{1}{\sqrt{2}}|0\rangle*\frac{1}{\sqrt{2}}(|0\rangle-|1\rangle) + \frac{1}{\sqrt{2}}|1\rangle*\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle) \newline
+|\psi_3\rangle = \frac{1}{2}|0\rangle*(|0\rangle-|1\rangle)+\frac{1}{2}|1\rangle*(|0\rangle+|1\rangle) \newline
+|\psi_3\rangle = \frac{1}{2}(|00\rangle-|01\rangle+|10\rangle+|11\rangle) \newline
+\Longrightarrow |\psi_3\rangle = \frac{1}{2}|00\rangle+\frac{1}{2}|10\rangle+\frac{1}{2}|01\rangle+\frac{1}{2}|11\rangle \newline
+$$
 ---
 
 Probabilities:
 $$
-P(0.0) = |\frac{1}{2}|^2 = \frac{1}{4} \newline
-P(0.1) = |\frac{-1}{2}|^2 = \frac{1}{4} \newline
-P(1.0) = |\frac{1}{2}|^2 = \frac{1}{4} \newline
-P(1.1) = |\frac{1}{2}|^2 = \frac{1}{4} \newline
+P(00) = |\frac{1}{2}|^2 = \frac{1}{4} \newline
+P(01) = |\frac{-1}{2}|^2 = \frac{1}{4} \newline
+P(10) = |\frac{1}{2}|^2 = \frac{1}{4} \newline
+P(11) = |\frac{1}{2}|^2 = \frac{1}{4} \newline
 $$

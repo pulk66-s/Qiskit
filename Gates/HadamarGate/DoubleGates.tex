@@ -1,0 +1,137 @@
+\documentclass{article}
+\usepackage{qcircuit}
+\usepackage{amsmath}
+\begin{document}
+\begin{figure}
+\caption{A circuit with two Hadamard gates}
+\label{fig:double-hadamard}
+\end{figure}
+\begin{center}
+\Qcircuit @C=1em @R=0.7em {
+    & |\psi\rangle & \gate{H} & \ctrl{1} & \ctrl{1} & \gate{H} & \qw \\
+    & |\phi\rangle & \qw & \gate{X} & \gate{X} & \qw & \qw
+}
+\end{center}
+\begin{equation}
+\begin{split}
+    & |\Psi_0\rangle = |\psi\rangle * |\phi\rangle \\
+    & |\psi\rangle = \alpha|0\rangle + \beta|1\rangle \\
+    & |\phi\rangle = \gamma|0\rangle + \delta|1\rangle \\
+\end{split}
+\end{equation}
+Step 1
+\begin{equation}
+\begin{split}
+    |\Psi_1\rangle & = H|\psi\rangle * |\phi\rangle \\
+    & = H(\alpha|0\rangle + \beta|1\rangle) * |\phi\rangle \\
+    & = (\alpha H|0\rangle + \beta H|1\rangle) * |\phi\rangle \\
+    H|0\rangle & = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \\
+    H|1\rangle & = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) \\
+    \Longrightarrow |\Psi_1\rangle & = (\alpha\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)
+        + \beta \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)) * |\phi\rangle \\
+    & = (\frac{\alpha}{\sqrt{2}}(|0\rangle + |1\rangle)
+        + \frac{\beta}{\sqrt{2}}(|0\rangle - |1\rangle)) * |\phi\rangle \\
+    & = (\frac{\alpha}{\sqrt{2}}|0\rangle + \frac{\alpha}{\sqrt{2}}|1\rangle
+        + \frac{\beta}{\sqrt{2}}|0\rangle - \frac{\beta}{\sqrt{2}}|1\rangle) * |\phi\rangle \\
+    & = (\frac{\alpha + \beta}{\sqrt{2}}|0\rangle + \frac{\alpha - \beta}{\sqrt{2}}|1\rangle) * |\phi\rangle
+\end{split}
+\end{equation}
+\begin{equation}
+\begin{split}
+    \Longrightarrow |\Psi_1\rangle & = (\frac{\alpha + \beta}{\sqrt{2}}|0\rangle
+        + \frac{\alpha - \beta}{\sqrt{2}}|1\rangle) * |\phi\rangle \\
+    & = \frac{\alpha + \beta}{\sqrt{2}}|0\rangle * |\phi\rangle
+        + \frac{\alpha - \beta}{\sqrt{2}}|1\rangle * |\phi\rangle \\
+    & = \frac{\alpha + \beta}{\sqrt{2}}|0\rangle * (\gamma|0\rangle + \delta|1\rangle)
+        + \frac{\alpha - \beta}{\sqrt{2}}|1\rangle * (\gamma|0\rangle + \delta|1\rangle) \\
+    & = \frac{\alpha + \beta}{\sqrt{2}}|0\rangle\gamma|0\rangle
+        + \frac{\alpha + \beta}{\sqrt{2}}|0\rangle\delta|1\rangle
+        + \frac{\alpha - \beta}{\sqrt{2}}|1\rangle\gamma|0\rangle
+        + \frac{\alpha - \beta}{\sqrt{2}}|1\rangle\delta|1\rangle \\
+    & = \gamma\frac{\alpha + \beta}{\sqrt{2}}|00\rangle
+        + \delta\frac{\alpha + \beta}{\sqrt{2}}|01\rangle
+        + \gamma\frac{\alpha - \beta}{\sqrt{2}}|10\rangle
+        + \delta\frac{\alpha - \beta}{\sqrt{2}}|11\rangle
+\end{split}
+\end{equation}
+Step 2
+\begin{equation}
+\begin{split}
+    |\Psi_2\rangle & = CNOT(|\Psi_1\rangle) \\
+    & = CNOT(\gamma\frac{\alpha + \beta}{\sqrt{2}}|00\rangle
+        + \delta\frac{\alpha + \beta}{\sqrt{2}}|01\rangle
+        + \gamma\frac{\alpha - \beta}{\sqrt{2}}|10\rangle
+        + \delta\frac{\alpha - \beta}{\sqrt{2}}|11\rangle) \\
+    & = \gamma\frac{\alpha + \beta}{\sqrt{2}}CNOT(|00\rangle)
+        + \delta\frac{\alpha + \beta}{\sqrt{2}}CNOT(|01\rangle)
+        + \gamma\frac{\alpha - \beta}{\sqrt{2}}CNOT(|10\rangle)
+        + \delta\frac{\alpha - \beta}{\sqrt{2}}CNOT(|11\rangle) \\
+\end{split}
+\end{equation}
+\begin{equation}
+    \Longrightarrow |\Psi_2\rangle = \gamma\frac{\alpha + \beta}{\sqrt{2}}|00\rangle
+        + \delta\frac{\alpha + \beta}{\sqrt{2}}|01\rangle
+        + \gamma\frac{\alpha - \beta}{\sqrt{2}}|11\rangle
+        + \delta\frac{\alpha - \beta}{\sqrt{2}}|10\rangle \\
+\end{equation}
+Step 3
+\begin{equation}
+\begin{split}
+    |\Psi_3\rangle & = CNOT(|\Psi_2\rangle) \\
+    & = CNOT(\gamma\frac{\alpha + \beta}{\sqrt{2}}|00\rangle
+        + \delta\frac{\alpha + \beta}{\sqrt{2}}|01\rangle
+        + \gamma\frac{\alpha - \beta}{\sqrt{2}}|11\rangle
+        + \delta\frac{\alpha - \beta}{\sqrt{2}}|10\rangle) \\
+    & = \gamma\frac{\alpha + \beta}{\sqrt{2}}CNOT(|00\rangle)
+        + \delta\frac{\alpha + \beta}{\sqrt{2}}CNOT(|01\rangle)
+        + \gamma\frac{\alpha - \beta}{\sqrt{2}}CNOT(|11\rangle)
+        + \delta\frac{\alpha - \beta}{\sqrt{2}}CNOT(|10\rangle) \\
+\end{split}
+\end{equation}
+\begin{equation}
+    \Longrightarrow |\Psi_3\rangle = \gamma\frac{\alpha + \beta}{\sqrt{2}}|00\rangle
+        + \delta\frac{\alpha + \beta}{\sqrt{2}}|01\rangle
+        + \gamma\frac{\alpha - \beta}{\sqrt{2}}|10\rangle
+        + \delta\frac{\alpha - \beta}{\sqrt{2}}|11\rangle \\
+\end{equation}
+Step 4
+\begin{equation}
+\begin{split}
+    |\Psi_4\rangle & = \gamma\frac{\alpha + \beta}{\sqrt{2}}H|0\rangle|0\rangle
+        + \delta\frac{\alpha + \beta}{\sqrt{2}}H|0\rangle|1\rangle
+        + \gamma\frac{\alpha - \beta}{\sqrt{2}}H|1\rangle|0\rangle
+        + \delta\frac{\alpha - \beta}{\sqrt{2}}H|1\rangle|1\rangle \\
+        H|0\rangle & = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \\
+        H|1\rangle & = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) \\
+    & = \gamma\frac{\alpha + \beta}{\sqrt{2}}*\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)|0\rangle
+        + \delta\frac{\alpha + \beta}{\sqrt{2}}*\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)|1\rangle
+        + \gamma\frac{\alpha - \beta}{\sqrt{2}}*\frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)|0\rangle \\
+        & + \delta\frac{\alpha - \beta}{\sqrt{2}}*\frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)|1\rangle \\
+    & = \gamma\frac{\alpha + \beta}{2}(|00\rangle + |10\rangle)
+        + \delta\frac{\alpha + \beta}{2}(|01\rangle + |11\rangle)
+        + \gamma\frac{\alpha - \beta}{2}(|00\rangle - |10\rangle)
+        + \delta\frac{\alpha - \beta}{2}(|01\rangle - |11\rangle) \\
+    & = \gamma\frac{\alpha + \beta}{2}|00\rangle + \gamma\frac{\alpha + \beta}{2}|10\rangle
+        + \delta\frac{\alpha + \beta}{2}|01\rangle + \delta\frac{\alpha + \beta}{2}|11\rangle
+        + \gamma\frac{\alpha - \beta}{2}|00\rangle - \gamma\frac{\alpha - \beta}{2}|10\rangle \\
+        & + \delta\frac{\alpha - \beta}{2}|01\rangle - \delta\frac{\alpha - \beta}{2}|11\rangle \\
+    & = (\gamma\frac{\alpha + \beta}{2} + \gamma\frac{\alpha - \beta}{2})|00\rangle
+        + (\gamma\frac{\alpha + \beta}{2} - \gamma\frac{\alpha - \beta}{2})|10\rangle \\
+        & + (\delta\frac{\alpha + \beta}{2} + \delta\frac{\alpha - \beta}{2})|01\rangle
+        + (\delta\frac{\alpha + \beta}{2} - \delta\frac{\alpha - \beta}{2})|11\rangle \\
+    & = \gamma\frac{2\alpha}{2}|00\rangle + \gamma\frac{2\beta}{2}|10\rangle
+        + \delta\frac{2\alpha}{2}|01\rangle + \delta\frac{2\beta}{2}|11\rangle \\
+    & = \gamma\alpha|00\rangle + \gamma\beta|10\rangle + \delta\alpha|01\rangle + \delta\beta|11\rangle \\
+    & = \gamma\alpha|0\rangle|0\rangle + \gamma\beta|1\rangle|0\rangle
+        + \delta\alpha|0\rangle|1\rangle + \delta\beta|1\rangle|1\rangle \\
+    & = \alpha|0\rangle(\gamma|0\rangle + \delta|1\rangle)
+        + \beta|1\rangle(\gamma|0\rangle + \delta|1\rangle) \\
+    & = \alpha|0\rangle|\phi\rangle + \beta|1\rangle|\phi\rangle \\
+    & = (\alpha|0\rangle + \beta|1\rangle)|\phi\rangle \\
+    & = |\psi\rangle * |\phi\rangle \\
+\end{split}
+\end{equation}
+\begin{equation}
+    \Longrightarrow |\Psi_4\rangle = |\psi\rangle * |\phi\rangle = |\Psi_0\rangle
+\end{equation}
+\end{document}

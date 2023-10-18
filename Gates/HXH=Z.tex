@@ -1,0 +1,48 @@
+\documentclass{article}
+\usepackage{qcircuit}
+\usepackage{amsmath}
+\begin{document}
+\section{Proof that HXH=Z}
+\begin{equation}
+\begin{split}
+    H & = \begin{bmatrix}
+        \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+        \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+    \end{bmatrix} \\
+    X & = \begin{bmatrix}
+        0 & 1 \\
+        1 & 0
+    \end{bmatrix} \\
+    Z & = \begin{bmatrix}
+        1 & 0 \\
+        0 & -1
+    \end{bmatrix} \\
+\end{split}
+\end{equation}
+\begin{equation}
+\begin{split}
+    HXH & = \begin{bmatrix}
+            \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+            \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+        \end{bmatrix} \begin{bmatrix}
+            0 & 1 \\
+            1 & 0
+        \end{bmatrix} \begin{bmatrix}
+            \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+            \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+        \end{bmatrix} \\
+    & = \begin{bmatrix}
+            \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+            -\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}
+        \end{bmatrix} \begin{bmatrix}
+            \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+            \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+        \end{bmatrix} \\
+    & = \begin{bmatrix}
+            1 & 0 \\
+            0 & -1
+        \end{bmatrix} \\
+    \Longrightarrow HXH & = Z
+\end{split}
+\end{equation}
+\end{document}

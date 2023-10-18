@@ -1,0 +1,284 @@
+\documentclass{article}
+\usepackage{qcircuit}
+\usepackage{amsmath}
+\usepackage{multicol}
+\begin{document}
+\section{Proof that $H|0\rangle \otimes H|1\rangle = (H \otimes H)(|0\rangle \otimes |1\rangle)$}
+Let's calculate the left and right parts of the equation separately.
+
+Left part:
+\begin{equation}
+\begin{split}
+    H & = \begin{bmatrix}
+        \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+        \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+    \end{bmatrix} \\
+    |0\rangle & = \begin{bmatrix}
+        1 \\
+        0
+    \end{bmatrix}, |1\rangle = \begin{bmatrix}
+        0 \\
+        1
+    \end{bmatrix} \\
+    \Longrightarrow H|0\rangle & = \begin{bmatrix}
+        \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+        \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+    \end{bmatrix} \begin{bmatrix}
+        1 \\
+        0
+    \end{bmatrix} = \begin{bmatrix}
+        \frac{1}{\sqrt{2}} \\
+        \frac{1}{\sqrt{2}}
+    \end{bmatrix} \\
+    \Longrightarrow H|1\rangle & = \begin{bmatrix}
+        \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+        \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+    \end{bmatrix} \begin{bmatrix}
+        0 \\
+        1
+    \end{bmatrix} = \begin{bmatrix}
+        \frac{1}{\sqrt{2}} \\
+        -\frac{1}{\sqrt{2}}
+    \end{bmatrix} \\
+    \Longrightarrow H|0\rangle \otimes H|1\rangle & = \begin{bmatrix}
+        \frac{1}{\sqrt{2}} \\
+        \frac{1}{\sqrt{2}}
+    \end{bmatrix} \otimes \begin{bmatrix}
+        \frac{1}{\sqrt{2}} \\
+        -\frac{1}{\sqrt{2}}
+    \end{bmatrix} \\
+    & = \begin{bmatrix}
+        \frac{1}{\sqrt{2}} \begin{bmatrix}
+            \frac{1}{\sqrt{2}} \\
+            -\frac{1}{\sqrt{2}}
+        \end{bmatrix} \\
+        \frac{1}{\sqrt{2}} \begin{bmatrix}
+            \frac{1}{\sqrt{2}} \\
+            -\frac{1}{\sqrt{2}}
+        \end{bmatrix}
+    \end{bmatrix} \\
+    \Longrightarrow H|0\rangle \otimes H|1\rangle & = \begin{bmatrix}
+        \frac{1}{2} \\
+        -\frac{1}{2} \\
+        \frac{1}{2} \\
+        -\frac{1}{2}
+    \end{bmatrix}
+\end{split}
+\end{equation}
+
+Right part:
+
+\begin{equation}
+\begin{split}
+    (H \otimes H)(|0\rangle \otimes |1\rangle) & = (
+        \begin{bmatrix}
+            \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+            \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+        \end{bmatrix} \otimes \begin{bmatrix}
+            \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+            \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+        \end{bmatrix}
+    ) (
+        \begin{bmatrix}
+            1 \\
+            0
+        \end{bmatrix} \otimes \begin{bmatrix}
+            0 \\
+            1
+        \end{bmatrix}
+    ) \\
+    & = \begin{bmatrix}
+        & \frac{1}{\sqrt{2}}\begin{bmatrix}
+            \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+            \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+        \end{bmatrix} & \frac{1}{\sqrt{2}}\begin{bmatrix}
+            \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+            \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+        \end{bmatrix} \\
+        & \frac{1}{\sqrt{2}}\begin{bmatrix}
+            \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+            \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+        \end{bmatrix} & -\frac{1}{\sqrt{2}}\begin{bmatrix}
+            \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+            \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+        \end{bmatrix} \\
+    \end{bmatrix}\begin{bmatrix}
+        \begin{bmatrix}
+            1\begin{bmatrix}
+                0 \\
+                1
+            \end{bmatrix}
+        \end{bmatrix}\\
+        \begin{bmatrix}
+            0\begin{bmatrix}
+                0 \\
+                1
+            \end{bmatrix}
+        \end{bmatrix}
+    \end{bmatrix} \\
+    & = \begin{bmatrix}
+        \frac{1}{2} & \frac{1}{2} & \frac{1}{2} & \frac{1}{2} \\
+        \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} \\
+        \frac{1}{2} & \frac{1}{2} & \frac{1}{2} & \frac{1}{2} \\
+        \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} \\
+    \end{bmatrix} \begin{bmatrix}
+        0 \\
+        1 \\
+        0 \\
+        0
+    \end{bmatrix} \\
+    \Longrightarrow (H \otimes H)(|0\rangle \otimes |1\rangle) & = \begin{bmatrix}
+        \frac{1}{2} \\
+        -\frac{1}{2} \\
+        \frac{1}{2} \\
+        -\frac{1}{2}
+    \end{bmatrix}
+\end{split}
+\end{equation}
+\begin{equation}
+    \Longrightarrow H|0\rangle \otimes H|1\rangle = (H \otimes H)(|0\rangle \otimes |1\rangle)
+\end{equation}
+
+\section{Proof that $H|\phi\rangle \otimes H|\psi\rangle = (H \otimes H)(|\phi\rangle \otimes |\psi\rangle)$}
+
+Let's calculate the left and right parts of the equation separately.
+
+Left part:
+\begin{equation}
+    \begin{split}
+        H & = \begin{bmatrix}
+            \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+            \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+        \end{bmatrix} \\
+        |\phi\rangle & = \begin{bmatrix}
+            \alpha \\ \beta
+        \end{bmatrix}, |\psi\rangle = \begin{bmatrix}
+            \gamma \\ \delta
+        \end{bmatrix} \\
+        H|\phi\rangle & = \begin{bmatrix}
+            \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+            \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+        \end{bmatrix} \begin{bmatrix}
+            \alpha \\ \beta
+        \end{bmatrix} = \begin{bmatrix}
+            \frac{1}{\sqrt{2}}\alpha + \frac{1}{\sqrt{2}}\beta \\
+            \frac{1}{\sqrt{2}}\alpha - \frac{1}{\sqrt{2}}\beta
+        \end{bmatrix} \\
+        H|\psi\rangle & = \begin{bmatrix}
+            \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+            \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+        \end{bmatrix} \begin{bmatrix}
+            \gamma \\ \delta
+        \end{bmatrix} = \begin{bmatrix}
+            \frac{1}{\sqrt{2}}\gamma + \frac{1}{\sqrt{2}}\delta \\
+            \frac{1}{\sqrt{2}}\gamma - \frac{1}{\sqrt{2}}\delta
+        \end{bmatrix} \\
+        \Longrightarrow H|\phi\rangle \otimes H|\psi\rangle & = \begin{bmatrix}
+            \frac{1}{\sqrt{2}}\alpha + \frac{1}{\sqrt{2}}\beta \\
+            \frac{1}{\sqrt{2}}\alpha - \frac{1}{\sqrt{2}}\beta
+        \end{bmatrix} \otimes \begin{bmatrix}
+            \frac{1}{\sqrt{2}}\gamma + \frac{1}{\sqrt{2}}\delta \\
+            \frac{1}{\sqrt{2}}\gamma - \frac{1}{\sqrt{2}}\delta
+        \end{bmatrix} \\
+        & = \begin{bmatrix}
+            (\frac{1}{\sqrt{2}}\alpha + \frac{1}{\sqrt{2}}\beta)\begin{bmatrix}
+                \frac{1}{\sqrt{2}}\gamma + \frac{1}{\sqrt{2}}\delta \\
+                \frac{1}{\sqrt{2}}\gamma - \frac{1}{\sqrt{2}}\delta                    
+            \end{bmatrix} \\
+            (\frac{1}{\sqrt{2}}\alpha - \frac{1}{\sqrt{2}}\beta)\begin{bmatrix}
+                \frac{1}{\sqrt{2}}\gamma + \frac{1}{\sqrt{2}}\delta \\
+                \frac{1}{\sqrt{2}}\gamma - \frac{1}{\sqrt{2}}\delta    
+            \end{bmatrix}
+        \end{bmatrix} \\
+        & = \begin{bmatrix}
+            \frac{1}{2}\alpha\gamma + \frac{1}{2}\alpha\delta + \frac{1}{2}\beta\gamma + \frac{1}{2}\beta\delta \\
+            \frac{1}{2}\alpha\gamma - \frac{1}{2}\alpha\delta + \frac{1}{2}\beta\gamma - \frac{1}{2}\beta\delta \\
+            \frac{1}{2}\alpha\gamma + \frac{1}{2}\alpha\delta - \frac{1}{2}\beta\gamma - \frac{1}{2}\beta\delta \\
+            \frac{1}{2}\alpha\gamma - \frac{1}{2}\alpha\delta - \frac{1}{2}\beta\gamma + \frac{1}{2}\beta\delta
+        \end{bmatrix} \\
+        \Longrightarrow H|\phi\rangle \otimes H|\psi\rangle & = \begin{bmatrix}
+            \frac{1}{2}(\alpha\gamma + \alpha\delta + \beta\gamma + \beta\delta) \\
+            \frac{1}{2}(\alpha\gamma - \alpha\delta + \beta\gamma - \beta\delta) \\
+            \frac{1}{2}(\alpha\gamma + \alpha\delta - \beta\gamma - \beta\delta) \\
+            \frac{1}{2}(\alpha\gamma - \alpha\delta - \beta\gamma + \beta\delta)
+        \end{bmatrix} \\
+    \end{split}
+\end{equation}
+
+Right part:
+\begin{equation}
+    \begin{split}
+        (H \otimes H)(|\phi\rangle \otimes |\psi\rangle) & = (
+            \begin{bmatrix}
+                \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+                \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+            \end{bmatrix} \otimes \begin{bmatrix}
+                \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+                \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+            \end{bmatrix}
+        ) (
+            \begin{bmatrix}
+                \alpha \\ \beta
+            \end{bmatrix} \otimes \begin{bmatrix}
+                \gamma \\ \delta
+            \end{bmatrix}
+        ) \\
+        & = (
+            \begin{bmatrix}
+                \frac{1}{\sqrt{2}}\begin{bmatrix}
+                    \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+                    \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+                \end{bmatrix} & \frac{1}{\sqrt{2}}\begin{bmatrix}
+                    \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+                    \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+                \end{bmatrix} \\
+                \frac{1}{\sqrt{2}}\begin{bmatrix}
+                    \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+                    \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+                \end{bmatrix} & -\frac{1}{\sqrt{2}}\begin{bmatrix}
+                    \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+                    \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+                \end{bmatrix}
+            \end{bmatrix}
+        ) (
+            \begin{bmatrix}
+                \alpha\begin{bmatrix}
+                    \gamma \\ \delta
+                \end{bmatrix} \\
+                \beta\begin{bmatrix}
+                    \gamma \\ \delta
+                \end{bmatrix}
+            \end{bmatrix}
+        ) \\
+        & = \begin{bmatrix}
+            \frac{1}{2} & \frac{1}{2} & \frac{1}{2} & \frac{1}{2} \\
+            \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} \\
+            \frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} \\
+            \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2}
+        \end{bmatrix} \begin{bmatrix}
+            \alpha\gamma \\
+            \alpha\delta \\
+            \beta\gamma \\
+            \beta\delta
+        \end{bmatrix} \\
+        & = \begin{bmatrix}
+            \frac{1}{2}\alpha\gamma + \frac{1}{2}\alpha\delta + \frac{1}{2}\beta\gamma + \frac{1}{2}\beta\delta \\
+            \frac{1}{2}\alpha\gamma - \frac{1}{2}\alpha\delta + \frac{1}{2}\beta\gamma - \frac{1}{2}\beta\delta \\
+            \frac{1}{2}\alpha\gamma + \frac{1}{2}\alpha\delta - \frac{1}{2}\beta\gamma - \frac{1}{2}\beta\delta \\
+            \frac{1}{2}\alpha\gamma - \frac{1}{2}\alpha\delta - \frac{1}{2}\beta\gamma + \frac{1}{2}\beta\delta
+        \end{bmatrix} \\
+        \Longrightarrow (H \otimes H)(|\phi\rangle \otimes |\psi\rangle) & = \begin{bmatrix}
+            \frac{1}{2}(\alpha\gamma + \alpha\delta + \beta\gamma + \beta\delta) \\
+            \frac{1}{2}(\alpha\gamma - \alpha\delta + \beta\gamma - \beta\delta) \\
+            \frac{1}{2}(\alpha\gamma + \alpha\delta - \beta\gamma - \beta\delta) \\
+            \frac{1}{2}(\alpha\gamma - \alpha\delta - \beta\gamma + \beta\delta)
+        \end{bmatrix} \\
+    \end{split}
+\end{equation}
+
+Conclusion:
+\begin{equation}
+    \Longrightarrow H|\phi\rangle \otimes H|\psi\rangle = (H \otimes H)(|\phi\rangle \otimes |\psi\rangle)
+\end{equation}
+
+\end{document}

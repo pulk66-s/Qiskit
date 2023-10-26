@@ -1,0 +1,177 @@
+\documentclass{article}
+\usepackage{qcircuit}
+\usepackage{amsmath}
+\begin{document}
+\title{Deutsch Algorithm}
+\section{Introduction}
+This document explain the behavior of the Deutsch Algorithm, this algorithm is a proof
+of the Quantum Supremacy, it is a single algorithm that can be solved in a quantum computer
+and can prove that the quantum computer is faster than a classical computer. By 
+solving a classical algorithm that has a time complexity of $O(2^n)$ in a quantum computer
+that has a time complexity of $O(1)$.
+
+\section{Problem}
+
+The problem that has been used in the Deutsch Algorithm is the Constant/Equilibrium problem 
+of a function. The problem is defined as follows:
+Take a function $f:\{0,1\}^n \rightarrow \{0,1\}$, and we want to know if the function is
+constant or equilibrium. A constant function is a function that returns the same value
+for all the inputs, and an equilibrium function is a function that returns $0$ for half
+of the inputs and $1$ for the other half.
+
+\section{Oracle Circuit}
+This is the circuit for two qubits $|x\rangle$ and $|y\rangle$:
+
+\Qcircuit {
+    |x\rangle & \multigate{1}{U_f} & \qw & |x\rangle \\
+    |y\rangle & \ghost{U_f} & \qw & |y \oplus f(x)\rangle
+}
+
+Where $|y \otimes f(x)\rangle$ is the modulo 2 sum of $y$ and $f(x)$. This circuit
+is called an oracle.
+
+If we set $y$ to $|0\rangle$ and $x$ to $|0\rangle$ we will have the following circuit:
+
+\Qcircuit {
+    |x\rangle & \multigate{1}{U_f} & \qw & |x\rangle \\
+    |0\rangle & \ghost{U_f} & \qw & |0 \oplus f(x)\rangle = |f(x)\rangle
+}
+
+Instead of the $|0\rangle$ we can use the $|-\rangle$ value that equals $\frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$:
+
+\Qcircuit {
+    |x\rangle & \multigate{1}{U_f} & \qw & (-1)^{f(x)}|x\rangle \\
+    |-\rangle & \ghost{U_f} & \qw & |-\rangle
+}
+
+The proof is in section 4
+
+\section{Proof of the oracle circuit with 0 and -}
+
+\begin{equation}
+    \begin{split}
+        |\psi_0\rangle & = |x\rangle|-\rangle \\
+        |-\rangle & = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) \\
+        \Longrightarrow |\psi_0\rangle & = \frac{1}{\sqrt{2}}(|x\rangle|0\rangle - |x\rangle|1\rangle) \\
+        |\psi_1\rangle & = \frac{1}{\sqrt{2}}(U_f(|x\rangle|0\rangle) - U_f(|x\rangle|1\rangle)) \\
+        |\psi_1\rangle & = \frac{1}{\sqrt{2}}(|x\rangle|f(x)\rangle - |x\rangle|1 \oplus f(x)\rangle) \\
+    \end{split}
+\end{equation}
+
+f is a function that returns 0 or 1 so $1 \oplus f(x)$ is the invert of $f(x)$ that is noted $\overline{f(x)}$
+
+\begin{equation}
+    \Longrightarrow |\psi_1\rangle = \frac{1}{\sqrt{2}}(|x\rangle|f(x)\rangle - |x\rangle|\overline{f(x)}\rangle)
+\end{equation}
+
+\begin{equation}
+    \begin{split}
+        & \begin{cases}
+            \text{If $f(x)$ = 0:} & |\psi_1\rangle = \frac{1}{\sqrt{2}}(|x\rangle|0\rangle - |x\rangle|1\rangle)
+            = |x\rangle|-\rangle \\
+            \text{If $f(x)$ = 1:} & |\psi_1\rangle = \frac{1}{\sqrt{2}}(- |x\rangle|0\rangle + |x\rangle|1\rangle)
+            = -|x\rangle|-\rangle\\
+        \end{cases} \\
+        \Longrightarrow |\psi_1\rangle & = (-1)^{f(x)}|x\rangle|-\rangle \\
+        \text{Because $(-1)^0 = 1$ and $(-1)^1 = -1$} \\
+    \end{split}
+\end{equation}
+
+\section{Deutsch Circuit}
+
+The actual Deutsch circuit is the following:
+
+\Qcircuit {
+    |0\rangle & \qw & \gate{H} & \multigate{1}{U_f} & \gate{H} & \meter \\
+    |0\rangle & \gate{X} & \gate{H} & \ghost{U_f} & \qw & \qw
+}
+
+Let's calculate the output of the circuit:
+
+\begin{equation}
+    \begin{split}
+        \text{Beginning state:} & \\
+        \Longrightarrow |\psi_0\rangle & = |0\rangle|0\rangle
+    \end{split}
+\end{equation}
+
+Applying the first $X$ gate of the second qubit:
+\begin{equation}
+    \Longrightarrow |\psi_1\rangle = |0\rangle X|0\rangle = |0\rangle|1\rangle
+\end{equation}
+
+Applying the $H$ gate of the two qubits:
+
+\begin{equation}
+    \begin{split}
+        |\psi_2\rangle & = H|0\rangle H|1\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)\frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) \\
+        \Longrightarrow |\psi_2\rangle & = |+\rangle|-\rangle \\
+    \end{split}
+\end{equation}
+
+Applying $f(x)$ to all the qubits:
+
+\begin{equation}
+    \begin{split}
+        |\psi_3\rangle & = U_f(|+\rangle|-\rangle) \\
+        |\psi_3\rangle & = U_f(\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)|-\rangle) \\
+        |\psi_3\rangle & = U_f(\frac{1}{\sqrt{2}}(|0\rangle|-\rangle + |1\rangle|-\rangle)) \\
+        |\psi_3\rangle & = \frac{1}{\sqrt{2}}(U_f|0\rangle|-\rangle + U_f|1\rangle|-\rangle) \\
+        |\psi_3\rangle & = \frac{1}{\sqrt{2}}((-1)^{f(0)}|0\rangle|-\rangle + (-1)^{f(1)}|1\rangle|-\rangle) \\
+        |\psi_3\rangle & = \frac{1}{\sqrt{2}}((-1)^{f(0)}|0\rangle + (-1)^{f(1)}|1\rangle)|-\rangle \\
+        & \text{We can delete $|-\rangle$ because it will not being used anymore and we will not be mesured}: \\
+        \Longrightarrow |\psi_3\rangle & = \frac{1}{\sqrt{2}}((-1)^{f(0)}|0\rangle + (-1)^{f(1)}|1\rangle)
+    \end{split}
+\end{equation}
+
+If $f(x)$ is constant then $f(0) = f(1)$ and $(-1)^{f(0)} = (-1)^{f(1)}$ so the state will be:
+\begin{equation}
+    \begin{cases}
+        \text{If $f(x) = 0$:} & |\psi_3\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = |+\rangle \\
+        \text{If $f(x) = 1$:} & |\psi_3\rangle = \frac{1}{\sqrt{2}}(-|0\rangle - |1\rangle) = -|+\rangle \\
+    \end{cases}
+\end{equation}
+
+Else:
+\begin{equation}
+    \begin{cases}
+        \text{If $f(0) = 0$ and $f(1) = 1$:} & |\psi_3\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) = |-\rangle \\
+        \text{If $f(0) = 1$ and $f(1) = 0$:} & |\psi_3\rangle = \frac{1}{\sqrt{2}}(-|0\rangle + |1\rangle) = -|-\rangle \\
+    \end{cases}
+\end{equation}
+
+Finally We can say that:
+\begin{equation}
+    \begin{cases}
+        \text{If $f(x)$ is constant: } & |\psi_3\rangle = \pm|+\rangle \\
+        \text{If $f(x)$ is equilibrium: } & |\psi_3\rangle = \pm|-\rangle \\
+    \end{cases}
+\end{equation}
+
+Applying $H$ to the first qubit:
+\begin{equation}
+    \begin{split}
+        & H|-\rangle = \frac{1}{\sqrt{2}}(H|0\rangle - H|1\rangle) \\
+        & = \frac{1}{\sqrt{2}}(\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) - \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)) \\
+        H|-\rangle & = |1\rangle \\
+        & H|+\rangle = \frac{1}{\sqrt{2}}(H|0\rangle + H|1\rangle) \\
+        & = \frac{1}{\sqrt{2}}(\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) + \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)) \\
+        & H|+\rangle = |0\rangle \\
+        & \begin{cases}
+            \text{If $f(x)$ is constant: } & |\psi_4\rangle = H|\psi_3\rangle = \pm H|-\rangle \\
+            \text{If $f(x)$ is equilibrium: } & |\psi_4\rangle = H|\psi_3\rangle = \pm H|+\rangle \\
+        \end{cases} \\
+        \Longrightarrow & \begin{cases}
+            \text{If $f(x)$ is constant: } & |\psi_4\rangle = \pm|1\rangle \\
+            \text{If $f(x)$ is equilibrium: } & |\psi_4\rangle = \pm|0\rangle \\
+        \end{cases} \\
+    \end{split}
+\end{equation}
+
+\section{Conclusion}
+
+We can see that if $f(x)$ is constant then the first qubit will be $|1\rangle$ and if $f(x)$ is equilibrium
+then the first qubit will be $|0\rangle$. So if we measure the first qubit we will know if $f(x)$ is constant
+or equilibrium. This is the proof of the Deutsch Algorithm and the Quantum Supremacy.
+
+\end{document}

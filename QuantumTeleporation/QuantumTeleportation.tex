@@ -1,0 +1,121 @@
+\documentclass{article}
+\usepackage{qcircuit}
+\usepackage{amsmath}
+\begin{document}
+\section{Introduction}
+This is a simple example of quantum teleportation.
+The quantum teleportation works using a bell state defined as:
+\begin{equation}
+    |\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)
+\end{equation}
+The goal of the quantum teleportation is to share this 2-qubit state between 2 persons
+Traditionnally called Alice and Bob. So Alice has the first qubit and Bob the second one.
+The quantum teleportation will shows that Alice can send her qubit state to Bob without
+sending the qubit itself. It proves that the quantum information can be transfered without
+any classical information and at an infinite speed.
+
+When Alice mesure her qubit, she will automatically change the state of Bob's qubit
+to the same state as her qubit. This is the quantum teleportation.
+
+\section{Circuit}
+This is the circuit of the quantum teleportation:
+
+\Qcircuit {
+    & |\psi\rangle & \ctrl{1} & \gate{H} & \meter & \cw \\
+    & |\beta_0\rangle & \gate{X} & \meter & \cw  \\
+    & |\beta_1\rangle & \qw & \qw & \gate{X} \cwx[-1] & \gate{Z} \cwx[-2] \\
+}
+
+Where $|\beta\rangle = |\beta_0\beta_1\rangle = \frac{1}{\sqrt{2}}|00\rangle + \frac{1}{\sqrt{2}}|11\rangle$
+A Bell State, $|\beta_0\rangle$ is the first qubit and $|\beta_1\rangle$ the second one.
+
+At this state $|\beta_0\rangle$ and $|\beta_1\rangle$ are entangled. So if we mesure $|\beta_0\rangle$,
+$|\beta_1\rangle$ will be in the same state as $|\beta_0\rangle$.
+
+We are applying a CNOT gate on $|\psi\rangle$ and $|\beta_0\rangle$. So the three qubits are now entangled.
+
+\begin{equation}
+    \begin{split}
+        |\Psi_0\rangle & = |\psi\rangle\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle) \\
+        |\Psi_0\rangle & = \frac{1}{\sqrt{2}}(|\psi\rangle|00\rangle + |\psi\rangle|11\rangle) \\
+        |\psi\rangle & = \alpha|0\rangle + \beta|1\rangle \\
+        \Longrightarrow |\Psi_0\rangle & = \frac{1}{\sqrt{2}}((\alpha|0\rangle + \beta|1\rangle)|00\rangle + (\alpha|0\rangle + \beta|1\rangle)|11\rangle) \\
+        |\Psi_0\rangle & = \frac{1}{\sqrt{2}}(\alpha|000\rangle + \beta|100\rangle + \alpha|011\rangle + \beta|111\rangle) \\
+        \Longrightarrow |\Psi_1\rangle & = \frac{1}{\sqrt{2}}(\alpha CNOT(|00\rangle)|\rangle0\rangle
+            + \beta CNOT(|10\rangle)|0\rangle
+            + \alpha CNOT(|01\rangle)|1\rangle
+            + \beta CNOT(|11\rangle)|1\rangle) \\
+        |\Psi_1\rangle & = \frac{1}{\sqrt{2}}
+            (\alpha|000\rangle + \beta|110\rangle + \alpha|011\rangle + \beta|101\rangle) \\
+    \end{split}
+\end{equation}
+
+We are applying an Hadamard gate on the first qbit.
+
+\begin{equation}
+    \begin{split}
+        |\Psi_2\rangle & = \frac{1}{\sqrt{2}}
+            (\alpha H(|0\rangle)|00\rangle 
+            + \beta H(|1\rangle)|10\rangle 
+            + \alpha H(|0\rangle)|11\rangle 
+            + \beta H(|1\rangle)|01\rangle) \\
+        |\Psi_2\rangle & = \frac{1}{\sqrt{2}}
+            (\alpha\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)|00\rangle
+            + \beta\frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)|10\rangle 
+            + \alpha\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)|11\rangle 
+            + \beta\frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)|01\rangle) \\
+        |\Psi_2\rangle & = \frac{1}{2}(\alpha(|000\rangle + |100\rangle)
+            + \beta(|010\rangle - |110\rangle)
+            + \alpha(|011\rangle + |111\rangle)
+            + \beta(|001\rangle - |101\rangle)) \\
+        |\Psi_2\rangle & = \frac{1}{2}(\alpha|000\rangle + \alpha|100\rangle
+            + \beta|010\rangle - \beta|110\rangle
+            + \alpha|011\rangle + \alpha|111\rangle
+            + \beta|001\rangle - \beta|101\rangle) \\
+    \end{split}
+\end{equation}
+
+Let's do the mesurements of the first two qbits
+
+\begin{equation}
+    \begin{split}
+        |\Psi_2\rangle & = \frac{1}{2}(\alpha|000\rangle + \alpha|100\rangle
+            + \beta|010\rangle - \beta|110\rangle
+            + \alpha|011\rangle + \alpha|111\rangle
+            + \beta|001\rangle - \beta|101\rangle) \\
+        |\Psi_2\rangle & = \frac{1}{2}(|00\rangle(\alpha|0\rangle + \beta|1\rangle)
+            + |10\rangle(\alpha|0\rangle - \beta|1\rangle)
+            + |01\rangle(\beta|0\rangle + \alpha|1\rangle)
+            + |11\rangle(\beta|0\rangle - \alpha|1\rangle)) \\
+    \end{split}
+\end{equation}
+
+So the two first bit mesurements are either $|00\rangle$, $|01\rangle$, $|10\rangle$, $|11\rangle$
+and each of them has a probability of $\frac{1}{4}$.
+
+We can determine the composition of the last bits depending on the mesurements of the first two bits.
+\begin{tabular}{|c|c|}
+    \hline
+        $|00\rangle$ & $\alpha|0\rangle + \beta|1\rangle$ \\
+        $|01\rangle$ & $\alpha|0\rangle - \beta|1\rangle$ \\
+        $|10\rangle$ & $\beta|0\rangle + \alpha|1\rangle$ \\
+        $|11\rangle$ & $\beta|0\rangle - \alpha|1\rangle$ \\
+    \hline
+\end{tabular}
+
+We want the final qbit $|\Phi\rangle$ to be equal to $\alpha|0\rangle + \beta|1\rangle$
+So we need to apply specific gates depending of the mesurements of the first two bits.
+
+If the first bit of the mesurement is $|1\rangle$ You must apply the door $Z$ on the last qbit.
+Because the coefficient $\beta$ of the qbit $|0\rangle$ is negative, the door $Z$ will invert the sign of the qbit.
+
+If the second bit of the mesurement is $|1\rangle$ You must apply the door $X$ on the last qbit.
+This door will invert the $\alpha$ and $\beta$ coefficients.
+
+Finally we can find the final qbit to be equal to 
+\begin{equation}
+    \Longrightarrow |\psi_4\rangle = \alpha|0\rangle + \beta|1\rangle
+\end{equation}
+
+We teleported the value of the qbit
+\end{document}

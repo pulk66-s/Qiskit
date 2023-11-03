@@ -1,0 +1,235 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+\title{Quantum Linear Algebra Notation}
+\section{Introduction}
+
+This document explain the notations and diverses things about them
+
+\section{Notations}
+
+Here is the list of the differents notations that you can find in this document
+\begin{equation}
+    \begin{cases}
+        z^* & \text{Complex conjugate} \\
+        |\psi\rangle & \text{Vector notation named "ket"} \\
+        \langle\psi| & \text{Dual vector notation named "bra"} \\
+        \langle\psi|\phi\rangle & \text{Inner product} \\
+        |\psi\rangle\langle\phi| & \text{Outer product} \\
+        |\psi\rangle\otimes|\phi\rangle & \text{Tensor product} \\
+        A* & \text{Complex conjugate of the matrix A} \\
+        A^T & \text{Transposition of matrix A} \\
+        A^\dag = (A^T)^* = (A^*)^T & \text{Hermitian conjugate of matrix A} \\
+        \langle\phi|A|\psi\rangle & \text{Inner product between $|\phi\rangle$ and $A|\psi\rangle$} \\
+    \end{cases}
+\end{equation}
+
+\subsection{Complex conjugate}
+
+\begin{equation}
+    \begin{split}
+        z & = a + ib \\
+        z^* & = a - ib \\
+    \end{split}
+\end{equation}
+With $a$ and $b$ real numbers.
+\subsection{Vector notation}
+
+\begin{equation}
+    \begin{split}
+        |\psi\rangle & = \begin{pmatrix}
+            \alpha \\
+            \beta \\
+        \end{pmatrix} \\
+        \langle\psi| & = \begin{pmatrix}
+            \alpha^* & \beta^* \\
+        \end{pmatrix} \\
+    \end{split}
+\end{equation}
+See how $|\psi\rangle$ is in column and $\langle\psi|$ is in line. It's because
+$\langle\psi|$ is the dual vector of $|\psi\rangle$.
+
+\subsection{Inner product}
+
+Inner product of two vectors $|\psi\rangle$ and $|\phi\rangle$ is defined as follows:
+\begin{equation}
+    \begin{split}
+        \langle\psi|\phi\rangle & = \begin{pmatrix}
+            \alpha^* & \beta^* \\
+        \end{pmatrix} \begin{pmatrix}
+            \gamma \\
+            \delta \\
+        \end{pmatrix} \\
+        \langle\psi|\phi\rangle & = \alpha^*\gamma + \beta^*\delta \\
+    \end{split}
+\end{equation}
+
+\subsection{Outer product}
+
+Outer product of two vector is defined as follow
+
+\begin{equation}
+    \begin{split}
+        |\psi\rangle\langle\phi| & = \begin{pmatrix}
+            \alpha \\
+            \beta \\
+        \end{pmatrix} \begin{pmatrix}
+            \gamma^* & \delta^* \\
+        \end{pmatrix} \\
+        & = \begin{pmatrix}
+            \alpha\gamma^* & \alpha\delta^* \\
+            \beta\gamma^* & \beta\delta^* \\
+        \end{pmatrix} \\
+    \end{split}
+\end{equation}
+
+\subsection{Complex conjugate of matrix}
+
+\begin{equation}
+    \begin{split}
+        A & = \begin{pmatrix}
+            a & b \\
+            c & d \\
+        \end{pmatrix} \\
+        A^* & = \begin{pmatrix}
+            a^* & b^* \\
+            c^* & d^* \\
+        \end{pmatrix} \\
+    \end{split}
+\end{equation}
+
+\subsection{Transposition of matrix}
+
+\begin{equation}
+    \begin{split}
+        A & = \begin{pmatrix}
+            a & b \\
+            c & d \\
+        \end{pmatrix} \\
+        A^T & = \begin{pmatrix}
+            a & c \\
+            b & d \\
+        \end{pmatrix} \\
+    \end{split}
+\end{equation}
+
+\subsection{Hermitian conjugate of matrix}
+
+\begin{equation}
+    \begin{split}
+        A & = \begin{pmatrix}
+            a & b \\
+            c & d \\
+        \end{pmatrix} \\
+        A^\dag & = \begin{pmatrix}
+            a^* & c^* \\
+            b^* & d^* \\
+        \end{pmatrix} \\
+    \end{split}
+\end{equation}
+
+\subsection{Inner product between $|\phi\rangle$ and $A|\psi\rangle$}
+
+\begin{equation}
+    \begin{split}
+        |\phi\rangle & = \begin{pmatrix}
+            \alpha \\
+            \beta \\
+        \end{pmatrix} \\
+        |\psi\rangle & = \begin{pmatrix}
+            \gamma \\
+            \delta \\
+        \end{pmatrix} \\
+        A & = \begin{pmatrix}
+            a & b \\
+            c & d \\
+        \end{pmatrix} \\
+        (|\phi\rangle, A|\psi\rangle) & = \langle\phi|A|\psi\rangle \\
+        & = \begin{pmatrix}
+            \alpha^* & \beta^* \\
+        \end{pmatrix} \begin{pmatrix}
+            a & b \\
+            c & d \\
+        \end{pmatrix} \begin{pmatrix}
+            \gamma \\
+            \delta \\
+        \end{pmatrix} \\
+        & = \begin{pmatrix}
+            \alpha^* & \beta^* \\
+        \end{pmatrix} \begin{pmatrix}
+            a\gamma + b\delta \\
+            c\gamma + d\delta \\
+        \end{pmatrix} \\
+        & = \alpha^*(a\gamma + b\delta) + \beta^*(c\gamma + d\delta) \\
+        & = \alpha^*a\gamma + \alpha^*b\delta + \beta^*c\gamma + \beta^*d\delta \\
+    \end{split}
+\end{equation}
+
+Proof that $(|\phi\rangle, A|\psi\rangle) = (A^\dag|\phi\rangle, |\psi\rangle)$
+
+\begin{equation}
+    \begin{split}
+        (A^\dag|\phi\rangle, |\psi\rangle) & = \langle\phi|A^\dag|\psi\rangle \\
+        & = \begin{pmatrix}
+            \alpha^* & \beta^* \\
+        \end{pmatrix} \begin{pmatrix}
+            a^* & c^* \\
+            b^* & d^* \\
+        \end{pmatrix} \begin{pmatrix}
+            \gamma \\
+            \delta \\
+        \end{pmatrix} \\
+        & = \begin{pmatrix}
+            \alpha^* & \beta^* \\
+        \end{pmatrix} \begin{pmatrix}
+            a^*\gamma + c^*\delta \\
+            b^*\gamma + d^*\delta \\
+        \end{pmatrix} \\
+        & = \alpha^*a^*\gamma + \alpha^*c^*\delta + \beta^*b^*\gamma + \beta^*d^*\delta \\
+        & = \alpha^*a^*\gamma + \beta^*b^*\gamma + \alpha^*c^*\delta + \beta^*d^*\delta \\
+        & = \alpha^*(a^*\gamma + b^*\gamma) + \beta^*(c^*\delta + d^*\delta) \\
+        & = \alpha^*(a^* + b^*)\gamma + \beta^*(c^* + d^*)\delta \\
+        & = \alpha^*(a + b)^*\gamma + \beta^*(c + d)^*\delta \\
+        & = \alpha^*(a\gamma + b\gamma)^* + \beta^*(c\delta + d\delta)^* \\
+        & = \alpha^*(a\gamma + b\delta)^* + \beta^*(c\gamma + d\delta)^* \\
+    \end{split}
+\end{equation}
+
+\section{Exercices}
+
+\subsection{Show that (1, -1), (1, 2) and (2, 1) are linearly dependant}
+
+A set of vectors $|\psi_1\rangle, |\psi_2\rangle, \dots, |\psi_n\rangle$ is linearly dependant if there exist a set of complex numbers $c_1, c_2, \dots, c_n$ not all zero such that
+\begin{equation}
+    c_1|\psi_1\rangle + c_2|\psi_2\rangle + \dots + c_n|\psi_n\rangle = 0
+\end{equation}
+
+\begin{equation}
+    \begin{split}
+        |\psi\rangle & = \begin{pmatrix}
+            1 \\
+            -1 \\
+        \end{pmatrix} \\
+        |\phi\rangle & = \begin{pmatrix}
+            1 \\
+            2 \\
+        \end{pmatrix} \\
+        |\chi\rangle & = \begin{pmatrix}
+            2 \\
+            1 \\
+        \end{pmatrix} \\
+        \Longrightarrow |\psi\rangle + |\phi\rangle - 2|\chi\rangle & = \begin{pmatrix}
+            1 \\
+            -1 \\
+        \end{pmatrix} + \begin{pmatrix}
+            1 \\
+            2 \\
+        \end{pmatrix} - \begin{pmatrix}
+            2 \\
+            1 \\
+        \end{pmatrix} \\
+        & = 0
+    \end{split}
+\end{equation}
+
+\end{document}

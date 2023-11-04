@@ -4,16 +4,78 @@
 \title{Inner product}
 
 \section{Definition}
+Notation:
 \begin{equation}
     (|\psi\rangle,|\phi\rangle)
 \end{equation}
 Where $|\psi\rangle$ and $|\phi\rangle$ are vectors in a Vector space.
+in $C^n$:
+\begin{equation}
+    \begin{split}
+        |\psi\rangle & = \begin{pmatrix} \psi_1 \\ \psi_2 \\ \vdots \\ \psi_n \end{pmatrix} \\
+        |\phi\rangle & = \begin{pmatrix} \phi_1 \\ \phi_2 \\ \vdots \\ \phi_n \end{pmatrix} \\
+        \Longrightarrow (|\psi\rangle,|\phi\rangle) & = \sum_{i=1}^{n}\psi_i^*\phi_i
+    \end{split}
+\end{equation}
 
 \section{Properties}
 
-Right linearity
+\subsubsection{Right linearity}
 \begin{equation}
-    (|\psi\rangle,|\phi\rangle) = (|\psi\rangle,\sum_{i}\lambda_i|\phi_i\rangle)
-        = \sum_{i}\lambda_i(|\psi\rangle,|\phi_i\rangle)
+    (|\psi\rangle,\alpha|\phi\rangle) = \alpha(|\psi\rangle,|\phi\rangle)
 \end{equation}
+
+Proof:
+\begin{equation}
+    \begin{split}
+        (|\psi\rangle,\alpha|\phi\rangle) & = \sum_{i=1}^{n}\psi_i^*\alpha\phi_i \\
+        & = \alpha\sum_{i=1}^{n}\psi_i^*\phi_i \\
+        & = \alpha(|\psi\rangle,|\phi\rangle) \\
+        \Longrightarrow (|\psi\rangle,\alpha|\phi\rangle) & = \alpha(|\psi\rangle,|\phi\rangle) \\
+    \end{split}
+\end{equation}
+
+\subsubsection{Conjugate symmetry}
+\begin{equation}
+    (|\psi\rangle,|\phi\rangle) = (|\phi\rangle,|\psi\rangle)^*
+\end{equation}
+
+Proof:
+\begin{eqnarray}
+    \begin{split}
+        (|\psi\rangle,|\phi\rangle) & = \sum_{i}\psi_i^*\phi_i \\
+        & = \sum_{i}\phi_i^*\psi_i, \\
+        & = (|\phi\rangle,|\psi\rangle)^* \\
+        \Longrightarrow (|\psi\rangle,|\phi\rangle) & = (|\phi\rangle,|\psi\rangle)^* \\
+    \end{split}
+\end{eqnarray}
+
+Explanation why $\psi^*\phi = \phi^*\psi$:
+\begin{equation}
+    \begin{split}
+        \psi & = \alpha + i\beta, \phi = \gamma + i\delta \\
+        \psi^*\phi & = (\alpha - i\beta)(\gamma + i\delta) \\
+        & = \alpha\gamma + \beta\delta + \alpha\delta i - \beta\gamma i \\
+        & = (\gamma - i\delta)(\alpha + i\beta) \\
+        & = \phi^*\psi \\
+        \Longrightarrow \psi^*\phi & = \phi^*\psi \\
+    \end{split}
+\end{equation}
+
+\subsubsection{Inequality}
+\begin{equation}
+    (|\psi\rangle,|\psi\rangle) \geq 0, \iff |\psi\rangle = 0
+\end{equation}
+
+Proof:
+\begin{equation}
+    \begin{split}
+        |\psi\rangle & = 0 = \begin{pmatrix} 0 \\ 0 \\ \vdots \\ 0 \end{pmatrix} \\
+        (|\psi\rangle,|\psi\rangle) & = \sum_{i=1}^{n}\psi_i^*\psi_i \\
+        & = \sum_{i=1}^{n}0 \\
+        & = 0 \\
+        \Longrightarrow (|\psi\rangle,|\psi\rangle) & \geq 0 \\
+    \end{split}
+\end{equation}
+
 \end{document}

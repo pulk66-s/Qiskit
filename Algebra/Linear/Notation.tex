@@ -195,6 +195,95 @@ Proof that $(|\phi\rangle, A|\psi\rangle) = (A^\dag|\phi\rangle, |\psi\rangle)$
     \end{split}
 \end{equation}
 
+\section{Definition}
+
+\subsection{Spanning}
+
+A span is a set of vector $|v_1\rangle, |v_2\rangle, \dots, |v_n\rangle$ such that any 
+vector $|\psi\rangle$ can be written as a linear combination of the $|v_i\rangle$.
+
+It can be written as:
+\begin{equation}
+    |v\rangle = \sum_i c_i|v_i\rangle
+\end{equation}
+Where $c_i$ are complex numbers and $|v_i\rangle$ are vectors.
+
+\subsubsection{Example}
+
+for $C^2$ a spanning can be:
+\begin{equation}
+    |\psi_1\rangle = \begin{pmatrix}
+        1 \\
+        0 \\
+    \end{pmatrix}, |\psi_2\rangle = \begin{pmatrix}
+        0 \\
+        1 \\
+    \end{pmatrix}
+\end{equation}
+Because any vector $|\psi\rangle = \begin{pmatrix}
+    \alpha \\
+    \beta \\
+\end{pmatrix}$ can be written as a linear combination of $|\psi_1\rangle$ and $|\psi_2\rangle$:
+\begin{equation}
+    |\psi\rangle = \alpha|\psi_1\rangle + \beta|\psi_2\rangle
+\end{equation}
+
+There is other spanning set in $C^2$ like:
+\begin{equation}
+    |\psi_2\rangle \equiv \frac{1}{\sqrt{2}}\begin{pmatrix}1 \\ 1 \end{pmatrix},
+    |\psi_3\rangle \equiv \frac{1}{\sqrt{2}}\begin{pmatrix}1 \\ -1 \end{pmatrix}
+\end{equation}
+
+Since the vector $|\psi\rangle = \begin{pmatrix}
+    \alpha \\
+    \beta \\
+\end{pmatrix}$ can be written as a linear combination of $|\psi_2\rangle$ and $|\psi_3\rangle$:
+\begin{equation}
+    \begin{split}
+        |\psi\rangle & = \alpha|\psi_2\rangle + \beta|\psi_3\rangle \\
+        & = \alpha\frac{1}{\sqrt{2}}\begin{pmatrix}1 \\ 1 \end{pmatrix} + \beta\frac{1}{\sqrt{2}}\begin{pmatrix}1 \\ -1 \end{pmatrix} \\
+        & = \frac{1}{\sqrt{2}}\begin{pmatrix}\alpha + \beta \\ \alpha - \beta \end{pmatrix} \\
+        \Longrightarrow |\psi\rangle & = \frac{\alpha + \beta}{\sqrt{2}}|\psi_2\rangle + \frac{\alpha - \beta}{\sqrt{2}}|\psi_3\rangle \\
+    \end{split}
+\end{equation}
+
+\subsubsection{Linearly dependant}
+
+A set of non zero vectors are linearly dependant if there exist a set of complex numbers $a_1, a_2, \dots, a_n$ not all zero such that
+\begin{equation}
+    a_1|\psi_1\rangle + a_2|\psi_2\rangle + \dots + a_n|\psi_n\rangle = 0
+\end{equation}
+
+\subsubsection{Linearly operator}
+
+\begin{equation}
+    \begin{split}
+        S & = \sum_{i}^{} a_i|v_i\rangle \\
+        \Longrightarrow A(S) & = A(\sum_{i}^{} a_i|v_i\rangle) \\
+        & = \sum_{i}^{} a_i A|v_i\rangle
+    \end{split}
+\end{equation}
+Where S is a spanning set and A is a linear operator.
+
+There is interesting linear operator like:
+
+Identity:
+\begin{equation}
+    I|\psi\rangle \equiv |\psi\rangle, \forall |\psi\rangle \in V, \text{V is a vector space}
+\end{equation}
+
+Zero Operator:
+\begin{equation}
+    0|\psi\rangle \equiv 0, \forall |\psi\rangle \in V, \text{V is a vector space}
+\end{equation}
+
+\subsection{Matrix and span}
+
+A linear operator can be applied to a vector $V$ and the result is a vector $W$.
+\begin{equation}
+    A|v_j\rangle = \sum_{i}^{} A_{ij}|w_i\rangle
+\end{equation}
+
 \section{Exercices}
 
 \subsection{Show that (1, -1), (1, 2) and (2, 1) are linearly dependant}
@@ -229,6 +318,113 @@ A set of vectors $|\psi_1\rangle, |\psi_2\rangle, \dots, |\psi_n\rangle$ is line
             1 \\
         \end{pmatrix} \\
         & = 0
+    \end{split}
+\end{equation}
+
+\subsection{Exercice 2.2 (Matrix representations: example)}
+
+Suppose $V$ is a vector space with basis vector $|0\rangle$ and $|1\rangle$.
+A is a linear operator from $V$ to $V$ such $A|0\rangle = |1\rangle$ and 
+$A|1\rangle = |0\rangle$. Give the matrix representation of A in the basis
+$|0\rangle$ and $|1\rangle$.
+
+\subsubsection{Theory}
+
+\begin{equation}
+    \begin{split}
+        A|0\rangle & = |1\rangle \\
+        A|1\rangle & = |0\rangle \\
+        A & = \begin{pmatrix}
+            0 & 1 \\
+            1 & 0 \\
+        \end{pmatrix} \\
+    \end{split}
+\end{equation}
+
+\subsubsection{Verification}
+
+\begin{equation}
+    \begin{split}
+        A & = \begin{pmatrix}
+            0 & 1 \\ 1 & 0 \\
+        \end{pmatrix} \\
+        |0\rangle & = \begin{pmatrix}
+            1 \\ 0 \\
+        \end{pmatrix} \\
+        |1\rangle & = \begin{pmatrix}
+            0 \\ 1 \\
+        \end{pmatrix} \\
+        \Longrightarrow A|0\rangle & = \begin{pmatrix}
+            0 & 1 \\ 1 & 0 \\
+        \end{pmatrix} \begin{pmatrix}
+            1 \\ 0 \\
+        \end{pmatrix} = \begin{pmatrix}
+            0 \\ 1 \\
+        \end{pmatrix} = |1\rangle \\
+        \Longrightarrow A|1\rangle & = \begin{pmatrix}
+            0 & 1 \\ 1 & 0 \\
+        \end{pmatrix} \begin{pmatrix}
+            0 \\ 1 \\
+        \end{pmatrix} = \begin{pmatrix}
+            1 \\ 0 \\
+        \end{pmatrix} = |0\rangle \\
+    \end{split}
+\end{equation}
+
+\subsection{2.3: (Matrix representation for operator products)}
+
+Suppose $A$ is a linear operator from vector space $V$ to $W$ and $B$ is a linear
+operator from $W$ to $X$. Let $|v_i\rangle$, $|w_j\rangle$ and $|x_k\rangle$ be
+bases for the vector spaces $V$, $W$, and $X$, respectively. Show that the matrix 
+representation for the linear $BA$ is the matrix product of the matrix representations for $B$ and $A$,
+with respects to the appropriate bases.
+
+\begin{equation}
+    \begin{split}
+        |v\rangle & \equiv \alpha|v_i\rangle,
+        |w\rangle \equiv \beta|w_j\rangle,
+        |x\rangle \equiv \gamma|x_k\rangle \\
+        A & = \begin{pmatrix}
+            a_{11} & a_{12} & \dots & a_{1n} \\
+            a_{21} & a_{22} & \dots & a_{2n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            a_{m1} & a_{m2} & \dots & a_{mn} \\
+        \end{pmatrix} = \sum_{i}^{} \sum_{j}^{} a_{ij} \\
+        B & = \begin{pmatrix}
+            b_{11} & b_{12} & \dots & b_{1n} \\
+            b_{21} & b_{22} & \dots & b_{2n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            b_{m1} & b_{m2} & \dots & b_{mn} \\
+        \end{pmatrix} = \sum_{j}^{} \sum_{k}^{} b_{jk} \\
+        A|v\rangle & \equiv \alpha A|v_i\rangle \\
+        B|w\rangle & \equiv \beta B|w_j\rangle \\
+        A|v_i\rangle & = \sum_{j}^{} a_{ij}|w_j\rangle \\
+        B|w_j\rangle & = \sum_{k}^{} b_{jk}|x_k\rangle \\
+        BA|v_i\rangle & = B(\sum_{j}^{} a_{ij}|w_j\rangle) \\
+        & = \sum_{j}^{} a_{ij}B|w_j\rangle \\
+        & = \sum_{j}^{} a_{ij}(\sum_{k}^{} b_{jk}|x_k\rangle) \\
+        & = \sum_{j}^{} \sum_{k}^{} a_{ij}b_{jk}|x_k\rangle \\
+        & = \sum_{k}^{} (\sum_{j}^{} a_{ij}b_{jk})|x_k\rangle \\
+        & = \sum_{k}^{} (AB)_{ik}|x_k\rangle \\
+        \Longrightarrow BA & = \sum_{i}^{} \sum_{k}^{} (AB)_{ik} \\
+    \end{split}
+\end{equation}
+
+
+\subsection{Exercice 2.4}
+
+Show that the identity operator on a vector space V has a matrix representation which is
+one along the diagonal and zero everywhere else, if the matrix representation of is taken with respect to the
+same input and output bases. This matrix is known as identity matrix
+
+\begin{equation}
+    \begin{split}
+        I|0\rangle & = |0\rangle \\
+        I|1\rangle & = |1\rangle \\
+        I & = \begin{pmatrix}
+            1 & 0 \\
+            0 & 1 \\
+        \end{pmatrix} \\
     \end{split}
 \end{equation}
 

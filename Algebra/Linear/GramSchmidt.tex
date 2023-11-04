@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+\title{Gram-Schmidt method}
+The Gram-Schmidt method is a method to transform a set of vectors into an orthogonal set of vectors.
+
+\section{Definition}
+
+Let $V$ be a vector space with an inner product $\langle\cdot,\cdot\rangle$ and $S = \{v_1, v_2, \dots, v_n\}$ a set of vectors of $V$.
+By definition the projection of $V$ on $U$ is:
+\begin{equation}
+    P_u(v) = \frac{v \cdot u}{u \cdot u}u
+\end{equation}
+The Gram-Schmidt method is defined as:
+\begin{equation}
+    \begin{split}
+        w_1 & = v_1 \\
+        w_2 & = v_2 - P_{w_1}(v_2) \\
+        w_3 & = v_3 - P_{w_1}(v_3) - P_{w_2}(v_3) \\
+        & \vdots \\
+        w_n & = v_n - P_{w_1}(v_n) - P_{w_2}(v_n) - \dots - P_{w_{n-1}}(v_n)
+    \end{split}
+\end{equation}
+
+The process can be summarized as:
+\begin{equation}
+    w_n = v_n - \sum_{i=1}^{n-1} P_{w_i}(v_n)
+\end{equation}
+
+\section{Proof}
+
+\subsection{Two vector orthogonal}
+
+Two vector $A$ and $B$ are orthogonal if $A \cdot B = 0$.
+
+\begin{equation}
+    \begin{split}
+        A & = \begin{pmatrix}x_1 \\ x_2 \\ \dots \\ x_n\end{pmatrix},
+            B = \begin{pmatrix} y_1 \\ y_2 \\ \dots \\ y_n\end{pmatrix} \\
+        A \cdot B & = \sum_{i=1}^n x_iy_i \\
+    \end{split}
+\end{equation}
+
+If the two vectors are orthogonal then $\sum_{i=1}^{n} x_iy_i = 0$.
+
+\subsection{Gram-Schmidt vectors}
+
+\begin{equation}
+    \begin{split}
+        w_n & = v_n - \sum_{i=1}^{n-1} P_{w_i}(v_n) \\
+        w_{n+1} & = v_{n+1} - \sum_{i=1}^{n} P_{w_i}(v_{n+1}) \\
+        \Longrightarrow w_n \cdot w_{n+1} & = \left(v_n - \sum_{i=1}^{n-1} P_{w_i}(v_n)\right) \cdot \left(v_{n+1} - \sum_{i=1}^{n} P_{w_i}(v_{n+1})\right) \\
+        & = v_n \cdot v_{n+1} - \sum_{i=1}^{n-1} v_n \cdot P_{w_i}(v_{n+1}) - \sum_{i=1}^{n} P_{w_i}(v_n) \cdot v_{n+1} + \sum_{i=1}^{n-1} \sum_{j=1}^{n} P_{w_i}(v_n) \cdot P_{w_j}(v_{n+1}) \\
+        
+    \end{split}
+\end{equation}
+
+\end{document}

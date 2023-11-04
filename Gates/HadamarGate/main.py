@@ -11,7 +11,7 @@ def state_sqrt2():
     basic_circuit([1/sqrt(2), 1/sqrt(2)])
 
 def basic_circuit(qbit):
-    simulator = q.Aer.get_backend('qasm_simulator')
+    simulator = q.Aer.get_backend('ibmq_5_yorktown')
     circuit = q.QuantumCircuit(1, 1)
     circuit.initialize(qbit, 0)
     circuit.h(0)

@@ -1,0 +1,47 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{qcircuit}
+\begin{document}
+\title{Explanation of the Quantum Parallelism with Deutch-Jozsa}
+\section{Introduction}
+The Quantum parallelism is a way to apply a function at different states of qbits
+in the same time, so now we can transform a complexity of $O(n^k)$ to $O(1)$.
+This complexity is the number of mesures of the function.
+
+The Deutch-Jozsa algorithm is a more general version of the Deutch algorithm.
+
+\section{Circuit}
+\Qcircuit {
+    |0\rangle & \gate{H^{\otimes n}} & \multigate{1}{U_f} & \gate{H^{\otimes n}} & \meter \\
+    |1\rangle & \gate{H} & \ghost{U_f} & \qw & \qw
+}
+
+This circuit has 4 main states:
+\begin{equation}
+    \begin{cases}
+        |\psi_0\rangle & \text{Is the beginning state} \\
+        |\psi_1\rangle & \text{Is the state after the first layer of H gates} \\
+        |\psi_2\rangle & \text{Is the state after the oracle U gate} \\
+        |\psi_3\rangle & \text{Is the state after the second layer of H gates} \\
+    \end{cases}
+\end{equation}
+
+\section{Calculation}
+
+Starting state
+\begin{equation}
+    |\psi_0\rangle = |0\rangle^{\otimes n}|1\rangle
+\end{equation}
+
+Applying the first layer of H gates
+\begin{equation}
+    \begin{split}
+        |\psi_1\rangle & = H|\psi_0\rangle \\
+        & = H|0\rangle^{\otimes n}H|1\rangle \\
+        H|0\rangle & = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = |+\rangle \\
+        H|1\rangle & = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) = |-\rangle \\
+        \Longrightarrow |\psi_1\rangle & = \sum_{i=1}^{i=n}(|+\rangle)|-\rangle \\
+    \end{split}
+\end{equation}
+
+\end{document}

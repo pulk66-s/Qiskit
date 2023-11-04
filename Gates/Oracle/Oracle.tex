@@ -1,0 +1,59 @@
+\documentclass{article}
+\usepackage{qcircuit}
+\usepackage{amsmath}
+\begin{document}
+\title{Oracle Gate}
+
+\section{Introduction}
+This gate is used to apply a function $f(x)$ on a qubit.
+
+\section{Circuit}
+\Qcircuit {
+    |x\rangle & \qw & \multigate{1}{U_f} & \qw & |x\rangle \\
+    |y\rangle & \qw & \ghost{U_f} & \qw & |y \oplus f(x)\rangle
+}
+
+Arithmetic representation:
+\begin{equation}
+    \begin{split}
+        |\psi_0\rangle & = |x\rangle |y\rangle \\
+        |\psi_1\rangle & = |x\rangle |y \oplus f(x)\rangle \\
+    \end{split}
+\end{equation}
+
+\section{Special Cases}
+\subsection{y = 0}
+\begin{equation}
+    \begin{split}
+        |\psi_0\rangle & = |x\rangle |0\rangle \\
+        \Longrightarrow |\psi_1\rangle & = |x\rangle |f(x)\rangle \\
+    \end{split}
+\end{equation}
+
+\section{Development}
+\subsection{Development and simplification}
+
+\begin{equation}
+    \begin{split}
+        |\psi_0\rangle & = |x\rangle |y\rangle \\
+        |x\rangle & = \alpha |0\rangle + \beta |1\rangle \\
+        |y\rangle & = \gamma |0\rangle + \delta |1\rangle \\
+        |\psi_1\rangle & = |x\rangle |y \oplus f(x)\rangle \\
+        \Longrightarrow |\psi_1\rangle & = (\alpha |0\rangle + \beta |1\rangle)|(\gamma |0\rangle + \delta |1\rangle) \oplus f(x)\rangle \\
+    \end{split}
+\end{equation}
+
+\subsection{Example}
+\begin{equation}
+    \begin{split}
+        |\psi_0\rangle & = |x\rangle|y\rangle \\
+        |x\rangle & = \frac{|0\rangle + |1\rangle}{\sqrt{2}} + \frac{1}{\sqrt{2}}|0\rangle + \frac{1}{\sqrt{2}}|1\rangle \\
+        |y\rangle & = 1|0\rangle + 0|1\rangle \\
+        |\psi_1\rangle & = (\alpha |0\rangle + \beta |1\rangle)|(\gamma |0\rangle + \delta |1\rangle) \oplus f(x)\rangle \\
+        \Longrightarrow |\psi_1\rangle & = (\frac{1}{\sqrt{2}}|0\rangle + \frac{1}{\sqrt{2}}|1\rangle)|0 \oplus f(x)\rangle \\
+        & = \frac{|0\rangle + |1\rangle}{\sqrt{2}}|f(x)\rangle \\
+        & = \frac{|0, f(x)\rangle + |1, f(x)\rangle}{\sqrt{2}} \\
+    \end{split}
+\end{equation}
+
+\end{document}

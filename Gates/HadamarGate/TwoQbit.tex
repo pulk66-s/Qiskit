@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage{qcircuit}
+\usepackage{amsmath}
+\begin{document}
+Calculate the result of the following circuit:
+
+\Qcircuit @C=1em @R=0.7em {
+    & |0\rangle & \gate{H} & \meter \\
+    & |1\rangle & \gate{H} & \meter
+}
+
+\section{Method 1: Using tensor product}
+Step 0:
+\begin{equation}
+    |\psi_0\rangle = |0\rangle \otimes |1\rangle = |01\rangle
+\end{equation}
+Step 1:
+\begin{equation}
+\begin{split}
+    |\psi_1\rangle & = H|0\rangle \otimes H|1\rangle \\
+    H|0\rangle & = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \\
+    H|1\rangle & = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) \\
+    \Longrightarrow |\psi_1\rangle & = \frac{1}{2}(|00\rangle + |01\rangle - |10\rangle - |11\rangle)
+\end{split}
+\end{equation}
+
+\section{Method 2: Using matrix multiplication}
+Step 0:
+\begin{equation}
+\begin{split}
+    |\psi_0\rangle & = |0\rangle \otimes |1\rangle = |01\rangle \\
+    |\psi_0\rangle & = \begin{bmatrix} 1 \\ 0 \end{bmatrix} \otimes \begin{bmatrix} 0 \\ 1 \end{bmatrix}
+    = \begin{bmatrix} 0 \\ 1 \\ 0 \\ 0 \end{bmatrix}
+\end{split}
+\end{equation}
+Step 1:
+\begin{equation}
+\begin{split}
+    & |\psi_1\rangle = H|0\rangle \otimes H|1\rangle = (H \otimes H)(|0\rangle \otimes |1\rangle) \\
+    & H = \begin{bmatrix}
+        \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+        \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+    \end{bmatrix} \\
+    & (H \otimes H)(|0\rangle \otimes |1\rangle) = (H \otimes H)\begin{bmatrix} 0 \\ 1 \\ 0 \\ 0 \end{bmatrix} \\
+    & (H \otimes H) = \begin{bmatrix}
+        \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+        \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+    \end{bmatrix} \otimes \begin{bmatrix}
+        \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+        \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+    \end{bmatrix} \\
+    & \Longrightarrow (H \otimes H) = \begin{bmatrix}
+        & \frac{1}{2} & \frac{1}{2} & \frac{1}{2} & \frac{1}{2} \\
+        & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} \\
+        & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} \\
+        & \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} \\
+    \end{bmatrix} \\
+    & \Longrightarrow (H \otimes H)(|0\rangle \otimes |1\rangle) = \begin{bmatrix}
+        & \frac{1}{2} & \frac{1}{2} & \frac{1}{2} & \frac{1}{2} \\
+        & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} \\
+        & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} \\
+        & \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2} & \frac{1}{2} \\
+    \end{bmatrix}\begin{bmatrix} 0 \\ 1 \\ 0 \\ 0 \end{bmatrix} \\
+    & (H \otimes H)(|0\rangle \otimes |1\rangle) = \begin{bmatrix}
+        0*\frac{1}{2}+1*\frac{1}{2}+0*\frac{1}{2}+0*\frac{1}{2} \\
+        0*\frac{1}{2}+1*-\frac{1}{2}+0*\frac{1}{2}+0*-\frac{1}{2} \\
+        0*\frac{1}{2}+1*\frac{1}{2}+0*-\frac{1}{2}+0*-\frac{1}{2} \\
+        0*\frac{1}{2}+1*-\frac{1}{2}+0*-\frac{1}{2}+0*\frac{1}{2} \\
+    \end{bmatrix} \\
+    & (H \otimes H)(|0\rangle \otimes |1\rangle) = \begin{bmatrix}
+        \frac{1}{2} \\
+        -\frac{1}{2} \\
+        \frac{1}{2} \\
+        -\frac{1}{2} \\
+    \end{bmatrix} \\
+    & \Longrightarrow |\psi_1\rangle = \frac{1}{2}(|00\rangle - |01\rangle + |10\rangle - |11\rangle)
+\end{split}
+\end{equation}
+\end{document}

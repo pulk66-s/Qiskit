@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+This file contains many demonstrations of theorems and facts about vectors in $R^n$.
+\section{Proof that $||\hat{v}|| = 1$}
+\begin{equation}
+    \begin{split}
+        \hat{v} & = \frac{v}{||v||} \\
+        v & = \begin{bmatrix}
+            v_1 & v_2 & \dots & v_n
+        \end{bmatrix} \\
+        \hat{v} = \frac{v}{||v||} & = \frac{1}{||v||} \begin{bmatrix}
+            v_1 & v_2 & \dots & v_n
+        \end{bmatrix} \\
+        \Longrightarrow \hat{v} & = \begin{bmatrix}
+            \frac{v_1}{||v||} & \frac{v_2}{||v||} & \dots & \frac{v_n}{||v||}
+        \end{bmatrix} \\
+        ||v|| & = \sqrt{v_1^2 + v_2^2 + \dots + v_n^2} \\
+        \Longrightarrow \hat{v} & = \begin{bmatrix}
+            \frac{v_1}{\sqrt{v_1^2 + v_2^2 + \dots + v_n^2}} & \frac{v_2}{\sqrt{v_1^2 + v_2^2 + \dots + v_n^2}} & \dots & \frac{v_n}{\sqrt{v_1^2 + v_2^2 + \dots + v_n^2}}
+        \end{bmatrix} \\
+        ||\hat{v}|| & = \sqrt{(\frac{v_1}{\sqrt{v_1^2 + v_2^2 + \dots + v_n^2}})^2 + (\frac{v_2}{\sqrt{v_1^2 + v_2^2 + \dots + v_n^2}})^2 + \dots + (\frac{v_n}{\sqrt{v_1^2 + v_2^2 + \dots + v_n^2}})^2} \\
+        & = \sqrt{\frac{v_1^2}{v_1^2 + v_2^2 + \dots + v_n^2} + \frac{v_2^2}{v_1^2 + v_2^2 + \dots + v_n^2} + \dots + \frac{v_n^2}{v_1^2 + v_2^2 + \dots + v_n^2}} \\
+        & = \sqrt{\frac{v_1^2 + v_2^2 + \dots + v_n^2}{v_1^2 + v_2^2 + \dots + v_n^2}} \\
+        & = \sqrt{1} \\
+        \Longrightarrow ||\hat{v}|| & = 1
+    \end{split}
+\end{equation}
+Example:
+\begin{equation}
+    \begin{split}
+        \hat{v} & = \begin{bmatrix}
+            \frac{1}{\sqrt{30}} & \frac{-3}{\sqrt{30}} & \frac{4}{\sqrt{30}} & \frac{2}{\sqrt{30}}
+        \end{bmatrix} \\
+        ||\hat{v}|| & = \sqrt{(\frac{1}{\sqrt{30}})^2 + (\frac{-3}{\sqrt{30}})^2 + (\frac{4}{\sqrt{30}})^2 + (\frac{2}{\sqrt{30}})^2} \\
+        & = \sqrt{\frac{1}{30} + \frac{9}{30} + \frac{16}{30} + \frac{4}{30}} \\
+        & = \sqrt{\frac{30}{30}} \\
+        & = \sqrt{1} \\
+        \Longrightarrow ||\hat{v}|| & = 1
+    \end{split}
+\end{equation}
+\end{document}

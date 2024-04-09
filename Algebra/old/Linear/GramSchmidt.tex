@@ -43,16 +43,8 @@ Two vector $A$ and $B$ are orthogonal if $A \cdot B = 0$.
 
 If the two vectors are orthogonal then $\sum_{i=1}^{n} x_iy_i = 0$.
 
-\subsection{Gram-Schmidt vectors}
+\subsection{Gram-Schmidt method produce an orthonormal set}
 
-\begin{equation}
-    \begin{split}
-        w_n & = v_n - \sum_{i=1}^{n-1} P_{w_i}(v_n) \\
-        w_{n+1} & = v_{n+1} - \sum_{i=1}^{n} P_{w_i}(v_{n+1}) \\
-        \Longrightarrow w_n \cdot w_{n+1} & = \left(v_n - \sum_{i=1}^{n-1} P_{w_i}(v_n)\right) \cdot \left(v_{n+1} - \sum_{i=1}^{n} P_{w_i}(v_{n+1})\right) \\
-        & = v_n \cdot v_{n+1} - \sum_{i=1}^{n-1} v_n \cdot P_{w_i}(v_{n+1}) - \sum_{i=1}^{n} P_{w_i}(v_n) \cdot v_{n+1} + \sum_{i=1}^{n-1} \sum_{j=1}^{n} P_{w_i}(v_n) \cdot P_{w_j}(v_{n+1}) \\
-        
-    \end{split}
-\end{equation}
+... IDK
 
 \end{document}

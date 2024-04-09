@@ -428,4 +428,37 @@ same input and output bases. This matrix is known as identity matrix
     \end{split}
 \end{equation}
 
+Solve the following inner product
+\begin{equation}
+    \langle3u_1 - 4u_2, 2v_1 - 5v_2 + 6v_3\rangle
+\end{equation}
+
+\begin{equation}
+    \begin{split}
+        & \langle3u_1 - 4u_2, 2v_1 - 5v_2 + 6v_3\rangle \\
+        & = \langle2v_1 - 5v_2 + 6v_3, 3u_1 - 4u_2\rangle \\
+        & = 2\langle v_1, 3u_1 - 4u_2\rangle
+            - 5\langle v_2, 3u_1 - 4u_2\rangle
+            + 6\langle v_3, 3u_1 - 4u_2\rangle \\
+        & = 2\langle 3u_1 - 4u_2, v_1 \rangle
+            - 5\langle 3u_1 - 4u_2, v_2 \rangle
+            + 6\langle 3u_1 - 4u_2, v_3 \rangle \\
+        & = 6\langle u_1, v_1 \rangle - 8\langle u_2, v_1 \rangle
+            - 15\langle u_1, v_2 \rangle + 20\langle u_2, v_2 \rangle
+            + 18\langle u_1, v_3 \rangle - 24\langle u_2, v_3 \rangle \\
+    \end{split}
+\end{equation}
+
+\begin{equation}
+    \langle A, B \rangle
+\end{equation}
+
+\begin{equation}
+    \begin{split}
+        \langle A, B \rangle & = tr(B^TA) \\
+        & = tr(\sum_{i=1}^{m} \sum_{j=1}^{n} b_{ij}a_{ij}) \\
+        & = \sum_{i=1}^{m} \sum_{j=1}^{n} b_{ij}a_{ij} \\
+    \end{split}
+\end{equation}
+
 \end{document}

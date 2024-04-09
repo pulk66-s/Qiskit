@@ -81,3 +81,8 @@ $$
 P(0) = (\frac{1}{\sqrt{2}})^2 = \frac{1}{2} \newline
 P(1) = (\frac{1}{\sqrt{2}})^2 = \frac{1}{2} \newline
 $$
+
+$$
+|\psi\rangle = \alpha|0\rangle + \beta|1\rangle \newline
+P(0) = |\alpha|^2 \newline
+$$
